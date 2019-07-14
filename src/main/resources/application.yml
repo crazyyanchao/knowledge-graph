@@ -1,0 +1,15 @@
+server:
+  port: 7476
+  servlet:
+    context-path: /knowledge-graph
+spring:
+  thymeleaf:
+    cache: false
+  mvc:
+    static-path-pattern: /path/**
+  resources:
+    static-locations: classpath:/static/
+neo4j:
+  bolt: bolt://localhost:7687
+  username: neo4j
+  password: 123456

@@ -1,0 +1,414 @@
+{
+  "nodes": [
+    {
+      "image": "caichenggong.png",
+      "name": "蔡成功",
+      "index": 0,
+      "id": 99571
+    },
+    {
+      "image": "houliangping.png",
+      "name": "侯亮平",
+      "index": 1,
+      "id": 99717
+    },
+    {
+      "image": "ouyangqing.png",
+      "name": "欧阳青",
+      "index": 2,
+      "id": 99812
+    },
+    {
+      "image": "wangdalu.png",
+      "name": "王大路",
+      "index": 3,
+      "id": 99572
+    },
+    {
+      "image": "lidakang.png",
+      "name": "李达康",
+      "index": 4,
+      "id": 99573
+    },
+    {
+      "image": "sharuijin.png",
+      "name": "沙瑞金",
+      "index": 5,
+      "id": 99815
+    },
+    {
+      "image": "gaoyuliang.png",
+      "name": "高玉良",
+      "index": 6,
+      "id": 99814
+    },
+    {
+      "image": "dingyizhen.png",
+      "name": "丁义诊",
+      "index": 7,
+      "id": 99813
+    },
+    {
+      "image": "qitongwei.png",
+      "name": "祁同伟",
+      "index": 8,
+      "id": 99574
+    },
+    {
+      "image": "gaoxiaoqin.png",
+      "name": "高小琴",
+      "index": 9,
+      "id": 99722
+    },
+    {
+      "image": "lianglu.png",
+      "name": "梁璐",
+      "index": 10,
+      "id": 99579
+    },
+    {
+      "image": "chenyang.png",
+      "name": "陈阳",
+      "index": 11,
+      "id": 99578
+    },
+    {
+      "image": "wuhuifen.png",
+      "name": "吴慧芬",
+      "index": 12,
+      "id": 99575
+    },
+    {
+      "image": "zhouzheng.png",
+      "name": "周正",
+      "index": 13,
+      "id": 99576
+    },
+    {
+      "image": "linhuahua.png",
+      "name": "林华华",
+      "index": 14,
+      "id": 99719
+    },
+    {
+      "image": "luyike.png",
+      "name": "陆亦可",
+      "index": 15,
+      "id": 99818
+    },
+    {
+      "image": "wangfuzhen.png",
+      "name": "王馥真",
+      "index": 16,
+      "id": 99577
+    },
+    {
+      "image": "chenhai.png",
+      "name": "陈海",
+      "index": 17,
+      "id": 99816
+    },
+    {
+      "image": "zhenxipo.png",
+      "name": "郑西坡",
+      "index": 18,
+      "id": 99580
+    },
+    {
+      "image": "chenyanshi.png",
+      "name": "陈岩石",
+      "index": 19,
+      "id": 99720
+    },
+    {
+      "image": "zhaodonglai.png",
+      "name": "赵东来",
+      "index": 20,
+      "id": 99718
+    },
+    {
+      "image": "zhongxiaoai.png",
+      "name": "钟小艾",
+      "index": 21,
+      "id": 99817
+    },
+    {
+      "image": "jichangming.png",
+      "name": "季昌明",
+      "index": 22,
+      "id": 99721
+    },
+    {
+      "image": "gaoxiaofeng.png",
+      "name": "高小凤",
+      "index": 23,
+      "id": 99723
+    }
+  ],
+  "links": [
+    {
+      "sourceId": 99571,
+      "targetId": 99717,
+      "source": 0,
+      "id": 262158,
+      "type": "发小",
+      "target": 1
+    },
+    {
+      "sourceId": 99571,
+      "targetId": 99812,
+      "source": 0,
+      "id": 262157,
+      "type": "贿赂",
+      "target": 2
+    },
+    {
+      "sourceId": 99573,
+      "targetId": 99572,
+      "source": 4,
+      "id": 262160,
+      "type": "前同事",
+      "target": 3
+    },
+    {
+      "sourceId": 99812,
+      "targetId": 99572,
+      "source": 2,
+      "id": 262273,
+      "type": "朋友",
+      "target": 3
+    },
+    {
+      "sourceId": 99815,
+      "targetId": 99573,
+      "source": 5,
+      "id": 262162,
+      "type": "下属",
+      "target": 4
+    },
+    {
+      "sourceId": 99573,
+      "targetId": 99814,
+      "source": 4,
+      "id": 262161,
+      "type": "同事",
+      "target": 6
+    },
+    {
+      "sourceId": 99573,
+      "targetId": 99813,
+      "source": 4,
+      "id": 262274,
+      "type": "下属",
+      "target": 7
+    },
+    {
+      "sourceId": 99574,
+      "targetId": 99722,
+      "source": 8,
+      "id": 262405,
+      "type": "情妇",
+      "target": 9
+    },
+    {
+      "sourceId": 99574,
+      "targetId": 99579,
+      "source": 8,
+      "id": 262328,
+      "type": "夫妻",
+      "target": 10
+    },
+    {
+      "sourceId": 99574,
+      "targetId": 99578,
+      "source": 8,
+      "id": 262404,
+      "type": "初恋",
+      "target": 11
+    },
+    {
+      "sourceId": 99814,
+      "targetId": 99574,
+      "source": 6,
+      "id": 262163,
+      "type": "学生",
+      "target": 8
+    },
+    {
+      "sourceId": 99815,
+      "targetId": 99574,
+      "source": 5,
+      "id": 262276,
+      "type": "下属",
+      "target": 8
+    },
+    {
+      "sourceId": 99814,
+      "targetId": 99575,
+      "source": 6,
+      "id": 262278,
+      "type": "夫妻",
+      "target": 12
+    },
+    {
+      "sourceId": 99576,
+      "targetId": 99719,
+      "source": 13,
+      "id": 262325,
+      "type": "情侣",
+      "target": 14
+    },
+    {
+      "sourceId": 99818,
+      "targetId": 99576,
+      "source": 15,
+      "id": 262324,
+      "type": "下属",
+      "target": 13
+    },
+    {
+      "sourceId": 99816,
+      "targetId": 99577,
+      "source": 17,
+      "id": 262326,
+      "type": "母亲",
+      "target": 16
+    },
+    {
+      "sourceId": 99816,
+      "targetId": 99578,
+      "source": 17,
+      "id": 262327,
+      "type": "姐姐",
+      "target": 11
+    },
+    {
+      "sourceId": 99720,
+      "targetId": 99580,
+      "source": 19,
+      "id": 262203,
+      "type": "前下属",
+      "target": 18
+    },
+    {
+      "sourceId": 99717,
+      "targetId": 99718,
+      "source": 1,
+      "id": 262167,
+      "type": "办案",
+      "target": 20
+    },
+    {
+      "sourceId": 99717,
+      "targetId": 99818,
+      "source": 1,
+      "id": 262166,
+      "type": "下属",
+      "target": 15
+    },
+    {
+      "sourceId": 99717,
+      "targetId": 99816,
+      "source": 1,
+      "id": 262279,
+      "type": "同学",
+      "target": 17
+    },
+    {
+      "sourceId": 99717,
+      "targetId": 99817,
+      "source": 1,
+      "id": 262165,
+      "type": "夫妻",
+      "target": 21
+    },
+    {
+      "sourceId": 99814,
+      "targetId": 99717,
+      "source": 6,
+      "id": 262277,
+      "type": "学生",
+      "target": 1
+    },
+    {
+      "sourceId": 99718,
+      "targetId": 99818,
+      "source": 20,
+      "id": 262323,
+      "type": "喜欢",
+      "target": 15
+    },
+    {
+      "sourceId": 99818,
+      "targetId": 99719,
+      "source": 15,
+      "id": 262401,
+      "type": "下属",
+      "target": 14
+    },
+    {
+      "sourceId": 99816,
+      "targetId": 99720,
+      "source": 17,
+      "id": 262402,
+      "type": "父亲",
+      "target": 19
+    },
+    {
+      "sourceId": 99816,
+      "targetId": 99721,
+      "source": 17,
+      "id": 262403,
+      "type": "上级",
+      "target": 22
+    },
+    {
+      "sourceId": 99722,
+      "targetId": 99723,
+      "source": 9,
+      "id": 262406,
+      "type": "姐妹",
+      "target": 23
+    },
+    {
+      "sourceId": 99814,
+      "targetId": 99723,
+      "source": 6,
+      "id": 262128,
+      "type": "情妇",
+      "target": 23
+    },
+    {
+      "sourceId": 99812,
+      "targetId": 99813,
+      "source": 2,
+      "id": 262159,
+      "type": "合作",
+      "target": 7
+    },
+    {
+      "sourceId": 99814,
+      "targetId": 99816,
+      "source": 6,
+      "id": 262164,
+      "type": "学生",
+      "target": 17
+    },
+    {
+      "sourceId": 99815,
+      "targetId": 99814,
+      "source": 5,
+      "id": 262275,
+      "type": "下属",
+      "target": 6
+    },
+    {
+      "sourceId": 99818,
+      "targetId": 99816,
+      "source": 15,
+      "id": 262168,
+      "type": "喜欢",
+      "target": 17
+    }
+  ]
+}
