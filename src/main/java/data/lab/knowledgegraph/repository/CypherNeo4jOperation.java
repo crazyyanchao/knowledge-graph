@@ -7,6 +7,8 @@ package data.lab.knowledgegraph.repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+import data.lab.knowledgegraph.utils.DbUtil;
 import data.lab.knowledgegraph.utils.Neo4jDataUtils;
 import org.apache.log4j.PropertyConfigurator;
 import org.neo4j.driver.v1.*;
@@ -18,6 +20,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -700,34 +706,34 @@ public class CypherNeo4jOperation {
         return map;
     }
 
-//    /**
-//     * @param cypher:标准的cypher语句
-//     * @return
-//     * @Description: TODO(执行cypher语句 - JDBC方式)
-//     */
-//    public static JSONObject exetueCypherJDBC(String cypher) {
-//        logger.info(cypher);
-//        JSONObject jsonObject = null;
-//        Connection con = null;
-//        PreparedStatement pre = null;
-//        ResultSet result = null;
-//        try {
-//            long startTime = System.nanoTime();
-//            ComboPooledDataSource dataSourcePool = DbUtil.getConNeo4jPool();
-//            con = dataSourcePool.getConnection();
-//            pre = con.prepareStatement(cypher);
-//            result = pre.executeQuery();
-//            jsonObject = Neo4jDataUtils.getNeo4jResult(result);
-//            long endTime = System.nanoTime();
-//            long consume = (endTime - startTime) / 1000000;
-//            logger.info("Cypher match " + consume + "ms");
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DbUtil.closeAll(result, pre, con);
-//        }
-//        return jsonObject;
-//    }
+    /**
+     * @param cypher:标准的cypher语句
+     * @return
+     * @Description: TODO(执行cypher语句 - JDBC方式)
+     */
+    public static JSONObject exetueCypherJDBC(String cypher) {
+        logger.info(cypher);
+        JSONObject jsonObject = null;
+        Connection con = null;
+        PreparedStatement pre = null;
+        ResultSet result = null;
+        try {
+            long startTime = System.nanoTime();
+            ComboPooledDataSource dataSourcePool = DbUtil.getConNeo4jPool();
+            con = dataSourcePool.getConnection();
+            pre = con.prepareStatement(cypher);
+            result = pre.executeQuery();
+            jsonObject = Neo4jDataUtils.getNeo4jResult(result);
+            long endTime = System.nanoTime();
+            long consume = (endTime - startTime) / 1000000;
+            logger.info("Cypher match " + consume + "ms");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtil.closeAll(result, pre, con);
+        }
+        return jsonObject;
+    }
 
     /**
      * @param

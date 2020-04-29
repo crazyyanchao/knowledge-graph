@@ -76,6 +76,12 @@
             <artifactId>neo4j-java-driver</artifactId>
             <version>1.7.5</version>
         </dependency>
+        <!-- 数据库连接池 -->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.2</version>
+        </dependency>
     </dependencies>
     <!--MAVEN构建-->
     <build>

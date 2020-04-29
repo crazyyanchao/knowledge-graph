@@ -112,6 +112,36 @@ public class DataServiceImpl {
         JSONObject object = cypherNeo4jOperationV3.dataToD3(cypher);
         return object;
     }
+    /**
+     * @param name:实体名称的碎片
+     * @param sysIds:系统用户ID
+     * @Description: TODO(通过实体名模糊推荐与搜索关联信息 ( 带权限过滤与无权限过滤))
+     */
+    public JSONObject searchInfo(String name, JSONArray sysIds) {
+        initLoad();
+        StringBuilder builder = new StringBuilder();
 
+        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' return p limit 50 union all ");
+
+//
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.sysuser_id in " + sysIds.toString() + " and m.user_id in " + sysIds.toString() + " return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.user_id in " + sysIds.toString() + " and m.sysuser_id in " + sysIds.toString() + " return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.sysuser_id in " + sysIds.toString() + " and m.sysuser_id in " + sysIds.toString() + " return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.user_id in " + sysIds.toString() + " and m.user_id in " + sysIds.toString() + " return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.sysuser_id IS NULL and m.user_id in " + sysIds.toString() + " return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.sysuser_id in " + sysIds.toString() + " and m.user_id IS NULL return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.user_id IS NULL and m.sysuser_id in " + sysIds.toString() + " return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.user_id in " + sysIds.toString() + " and m.sysuser_id IS NULL return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.sysuser_id IS NULL and m.sysuser_id in " + sysIds.toString() + " return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.sysuser_id in " + sysIds.toString() + " and m.sysuser_id IS NULL return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.user_id IS NULL and m.user_id in " + sysIds.toString() + " return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.user_id in " + sysIds.toString() + " and m.user_id IS NULL return p limit 50 union all ");
+//        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.user_id IS NULL and m.user_id IS NULL return p limit 50 union all ");
+
+        String cypher = builder.toString().substring(0, builder.length() - 10);
+        JSONObject object = cypherNeo4jOperationV3.exetueCypherJDBC(cypher);
+
+        return object;
+    }
 }
 

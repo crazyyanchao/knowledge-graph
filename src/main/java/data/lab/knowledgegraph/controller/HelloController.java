@@ -116,7 +116,19 @@ public class HelloController {
 
         return graphData.toJSONString();
     }
-
+    /**
+     * @param
+     * @return
+     * @Description: TODO(Super_Zzzz)
+     */
+    @RequestMapping(value = "/dataSource/search", method = RequestMethod.POST)
+    @ResponseBody
+    public String getGraphEntityInfoSearch(@RequestBody UserJson userJson) {
+        String name = userJson.getName();
+        JSONArray sysIds = userJson.getSysTemUserId();
+        JSONObject graphData = dataService.searchInfo(name, sysIds);
+        return graphData.toJSONString();
+    }
     /**
      * @param
      * @return
