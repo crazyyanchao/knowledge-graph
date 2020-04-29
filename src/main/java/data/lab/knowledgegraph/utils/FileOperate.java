@@ -1,26 +1,8 @@
-package casia.isiteam.knowledgegraph.utils;
-/**
- * 　　　　　　　 ┏┓       ┏┓+ +
- * 　　　　　　　┏┛┻━━━━━━━┛┻┓ + +
- * 　　　　　　　┃　　　　　　 ┃
- * 　　　　　　　┃　　　━　　　┃ ++ + + +
- * 　　　　　　 █████━█████  ┃+
- * 　　　　　　　┃　　　　　　 ┃ +
- * 　　　　　　　┃　　　┻　　　┃
- * 　　　　　　　┃　　　　　　 ┃ + +
- * 　　　　　　　┗━━┓　　　 ┏━┛
- * ┃　　  ┃
- * 　　　　　　　　　┃　　  ┃ + + + +
- * 　　　　　　　　　┃　　　┃　Code is far away from     bug with the animal protecting
- * 　　　　　　　　　┃　　　┃ +
- * 　　　　　　　　　┃　　　┃
- * 　　　　　　　　　┃　　　┃　　+
- * 　　　　　　　　　┃　 　 ┗━━━┓ + +
- * 　　　　　　　　　┃ 　　　　　┣┓
- * 　　　　　　　　　┃ 　　　　　┏┛
- * 　　　　　　　　　┗┓┓┏━━━┳┓┏┛ + + + +
- * 　　　　　　　　　 ┃┫┫　 ┃┫┫
- * 　　　　　　　　　 ┗┻┛　 ┗┻┛+ + + +
+package data.lab.knowledgegraph.utils;
+/*
+ *
+ * Data Lab - graph database organization.
+ *
  */
 
 import com.alibaba.fastjson.JSONArray;
@@ -35,6 +17,12 @@ import org.dom4j.io.XMLWriter;
 import java.io.*;
 import java.util.*;
 
+/**
+ * @author Yc-Ma
+ * @PACKAGE_NAME: casia.isiteam.knowledgegraph.utils
+ * @Description: TODO
+ * @date 2020/4/29 22:21
+ */
 public class FileOperate {
 
     /**

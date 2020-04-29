@@ -1,29 +1,11 @@
-package casia.isiteam.knowledgegraph.utils;
-/**
- * 　　　　　　　 ┏┓       ┏┓+ +
- * 　　　　　　　┏┛┻━━━━━━━┛┻┓ + +
- * 　　　　　　　┃　　　　　　 ┃
- * 　　　　　　　┃　　　━　　　┃ ++ + + +
- * 　　　　　　 █████━█████  ┃+
- * 　　　　　　　┃　　　　　　 ┃ +
- * 　　　　　　　┃　　　┻　　　┃
- * 　　　　　　　┃　　　　　　 ┃ + +
- * 　　　　　　　┗━━┓　　　 ┏━┛
- * ┃　　  ┃
- * 　　　　　　　　　┃　　  ┃ + + + +
- * 　　　　　　　　　┃　　　┃　Code is far away from     bug with the animal protecting
- * 　　　　　　　　　┃　　　┃ +
- * 　　　　　　　　　┃　　　┃
- * 　　　　　　　　　┃　　　┃　　+
- * 　　　　　　　　　┃　 　 ┗━━━┓ + +
- * 　　　　　　　　　┃ 　　　　　┣┓
- * 　　　　　　　　　┃ 　　　　　┏┛
- * 　　　　　　　　　┗┓┓┏━━━┳┓┏┛ + + + +
- * 　　　　　　　　　 ┃┫┫　 ┃┫┫
- * 　　　　　　　　　 ┗┻┛　 ┗┻┛+ + + +
+package data.lab.knowledgegraph.utils;
+/*
+ *
+ * Data Lab - graph database organization.
+ *
  */
 
-import casia.isiteam.knowledgegraph.repository.CypherNeo4jOperation;
+import data.lab.knowledgegraph.repository.CypherNeo4jOperation;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.neo4j.driver.v1.*;
@@ -38,6 +20,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Yc-Ma
+ * @PACKAGE_NAME: casia.isiteam.knowledgegraph.utils
+ * @Description: TODO
+ * @date 2020/4/29 22:21
+ */
 public class DataToD3 {
 
     private final static Logger logger = LoggerFactory.getLogger(CypherNeo4jOperation.class);

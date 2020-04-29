@@ -1,20 +1,8 @@
-package casia.isiteam.knowledgegraph.controller;
+package data.lab.knowledgegraph.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.neo4j.cypher.internal.frontend.v2_3.ast.functions.Str;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import static org.junit.Assert.*;
 
 /**
  * 　　　　　　　 ┏┓       ┏┓+ +

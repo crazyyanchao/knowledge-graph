@@ -1,4 +1,4 @@
-package casia.isiteam.knowledgegraph.repository;
+package data.lab.knowledgegraph.repository;
 
 import org.junit.Test;
 

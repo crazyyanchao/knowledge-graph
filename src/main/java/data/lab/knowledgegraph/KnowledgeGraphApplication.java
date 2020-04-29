@@ -1,12 +1,14 @@
-package casia.isiteam.knowledgegraph;
+package data.lab.knowledgegraph;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @PACKAGE_NAME: casia.isiteam.knowledgegraph.KnowledgeGraphApplication
- * @Description: TODO(Spring Boot启动器 （ 程序入口 ）)
+ * @author Yc-Ma
+ * @PACKAGE_NAME: casia.isiteam.knowledgegraph
+ * @Description: TODO(SPRING Boot START)
+ * @date 2020/4/29 22:21
  */
-//@SpringBootApplication此注解用来标明这个类是程序的入口
 @SpringBootApplication
 public class KnowledgeGraphApplication {
     public static void main(String[] args) {

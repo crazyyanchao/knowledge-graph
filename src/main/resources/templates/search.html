@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>GRAPH SEARCH</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <style type="text/css">
+        #box {
+            width: 380px;
+            margin: 30px auto;
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+
+        input {
+            width: 260px;
+            border: 1px solid #e2e2e2;
+            height: 30px;
+            float: left;
+            background-image: url(http://localhost:7476/knowledge-graph/path/images/search.jpg);
+            background-repeat: no-repeat;
+            background-size: 25px;
+            background-position: 5px center;
+            padding: 0 0 0 40px;
+        }
+
+        #search {
+            width: 78px;
+            height: 32px;
+            float: right;
+            background: black;
+            color: white;
+            text-align: center;
+            line-height: 32px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body style="background: url(http://localhost:7476/knowledge-graph/path/images/bg.jpg);">
+
+<a href="http://localhost:7476/knowledge-graph/hello/index">人物知识图谱</a>
+
+<body>
+<div id="box" style="position:  relative;">
+    <h4 style="color: #c0c0c09c;display:  inline-block;position:  absolute;width:  452px;right: 401px;top: -30px;height: auto;">
+        问答举例：小明住哪里？小明家在哪里？小明最近qq上线是什么时候？小李的微信是什么？小李从哪儿毕业的？小李最近有啥异常行为吗？小李和小明是什么关系？小明去过南湖路20号吗？小李和小明有一起去过的地方吗？人民的名义人物关系网有吗？...
+    </h4>
+
+    <div style="float: left;">
+        <input type="text" name="search" id="A" placeholder="请输入关键字">
+        <div id="search">图搜</div>
+    </div>
+    <h4 style="color: #c0c0c09c;display:  inline-block;position:  absolute;width:  477px;right: -507px;top: -30px;height: auto;">
+        Keyword Tips: 北京,小李,小明,吴良,上海,Twitter,篮球,facebook,美国 多关键词使用空格分隔：上海 小李 WeChat,小李 qq 上帝同路...
+        Keyword Tips: 人与人（小李 小明）,人与组织（小明 美国）,人与事件（小李 篮球）,人与物（小李 phone）,组织与事件（篮球 美国）...
+    </h4>
+
+    <h4 style="color: #c0c0c09c;display:  inline-block;position:  absolute;width:  452px;right: 401px;top: 44px;height: auto;">
+        功能备注：1.实体关联信息搜索与推荐使用模糊关键词
+        2.实体关系发现使用多实体对
+        3.问答式搜索使用问号结尾
+    </h4>
+
+
+</div>
+<script type='text/javascript' src='http://localhost:7476/knowledge-graph/path/js/jquery-2.2.4.min.js'></script>
+<script type='text/javascript' src="http://localhost:7476/knowledge-graph/path/js/d3.js" charset="utf-8"></script>
+<script type='text/javascript' src='http://localhost:7476/knowledge-graph/path/js/inter.js'></script>
+<script type='text/javascript' src='http://localhost:7476/knowledge-graph/path/js/update.js'></script>
+<script type='text/javascript' src='http://localhost:7476/knowledge-graph/path/js/graph.js'></script>
+<script>
+    $(function () {
+        input();
+    });
+
+    function input() {
+        $("#search").off("click").on("click", function () {
+            // $("#graphId").html("");
+            var entityCutName = $("#A").val();
+
+
+            if (entityCutName != null && entityCutName != "" && entityCutName != undefined) {
+
+                if (entityCutName.indexOf(" ") == -1) { // 没有空格
+
+                    if (entityCutName.indexOf("？") == -1 && entityCutName.indexOf("?") == -1) {
+                        var obj = new Object();
+                        obj.name = entityCutName;
+                        obj.sysTemUserId = ["234", "1", "316", "313", "322", "2", "287", "1", "13", "46", "277", "309", "4", "310", "379", "12", "2", "3", "8", "11", "4", "44", "1", "116", "22", "25", "287", "13", "34", "10", "93", "37", "111", "98", "285", "24", "17", "280", "321", "28"];
+                        var json = JSON.stringify(obj);
+
+                        alert("search for " + entityCutName + "?");
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:7476/knowledge-graph/hello/dataSource/search',
+                            data: json,
+                            contentType: "application/json",
+                            success: function (data) {
+                                output(data);
+                            },
+                            dataType: 'json'
+                        });
+                    } else {
+
+                        if (entityCutName.indexOf("人民的名义") == -1) {
+                            var obj = new Object();
+                            obj.askString = entityCutName;
+                            obj.sysTemUserId = ["234", "1", "316", "313", "322", "2", "287", "1", "13", "46", "277", "309", "4", "310", "379", "12", "2", "3", "8", "11", "4", "44", "1", "116", "22", "25", "287", "13", "34", "10", "93", "37", "111", "98", "285", "24", "17", "280", "321", "28"];
+                            var json = JSON.stringify(obj);
+
+                            alert("search for " + entityCutName + "?");
+                            $.ajax({
+                                type: 'POST',
+                                url: 'http://localhost:7476/knowledge-graph/hello/dataSource/answer',
+                                data: json,
+                                contentType: "application/json",
+                                success: function (data) {
+                                    output(data);
+                                },
+                                dataType: 'json'
+                            });
+                        } else {    //  人名的名义知识图谱数据
+                            d3.json("http://localhost:7476/knowledge-graph/hello/dataSource/type/2", function (error, json) { // 服务器加载知识图谱数据
+                                if (error) {
+                                    return console.warn(error);
+                                }
+                                console.log("人名的名义知识图谱数据：");
+                                console.log(json.nodes);
+                                console.log(json.links);
+                                output(json);
+                            });
+                        }
+                    }
+
+
+                } else {    // 有空格   覃永 吴良
+                    debugger
+                    var arr = entityCutName.split(" ");
+
+                    var obj = {};
+                    obj.nameArray = arr;
+                    obj.sysTemUserId = ["234", "1", "316", "313", "322", "2", "287", "1", "13", "46", "277", "309", "4", "310", "379", "12", "2", "3", "8", "11", "4", "44", "1", "116", "22", "25", "287", "13", "34", "10", "93", "37", "111", "98", "285", "24", "17", "280", "321", "28"];
+                    var json = JSON.stringify(obj);
+
+                    alert("search for " + entityCutName + "?");
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:7476/knowledge-graph/hello/dataSource/realSearch',
+                        data: json,
+                        contentType: "application/json",
+                        success: function (data) {
+                            output(data);
+                        },
+                        dataType: 'json'
+                    });
+                }
+            } else {
+                alert("keyword not null!")
+            }
+        })
+
+    }
+
+    function output(data) {
+        console.log(data);
+        loadZdrSearchGraph(data);
+    }
+
+</script>
+</body>
+</html>
+
