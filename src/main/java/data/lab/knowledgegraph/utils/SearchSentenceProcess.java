@@ -71,7 +71,7 @@ public class SearchSentenceProcess {
 
         } else if (askString.indexOf("行为") != -1) {
             String entityOne = askString.substring(0, 2);
-            builder.append("match p=(n:人)-[r:参与事]-(m:事) where n.name=~'.*" + entityOne + ".*' and n.sysuser_id in " + sysIds + " and m.start_time>='" + startTime + "' and m.start_time<='" + stopTime + "' return p limit 50 union all ");
+            builder.append("match p=(n:人)-[r:参与事]-(m:事) where n.name=~'.*" + entityOne + ".*' and n.sys_id in " + sysIds + " and m.start_time>='" + startTime + "' and m.start_time<='" + stopTime + "' return p limit 50 union all ");
             builder.append("match p=(n:人)-[r1:手机号]-(k:物)-[r2:换手机设备]-(m:物) where n.name=~'.*" + entityOne + ".*' return p limit 50 union all ");
             builder.append("match p=(n:人)-[r1:手机号]-(k:物)-[r2:换手机卡]-(m:物) where n.name=~'.*" + entityOne + ".*' return p limit 50 union all ");
             builder.append("match p=(n:人)-[r1:QQ号]-(k:物)-[r2:增加好友]-(m:物) where n.name=~'.*" + entityOne + ".*' return p limit 50 union all ");
@@ -86,7 +86,7 @@ public class SearchSentenceProcess {
             for (int i = 0; i < perLocEventThingOrgArr.length; i++) {
                 String label = perLocEventThingOrgArr[i];
                 builder.append("match (n:人),(m:人) ");
-                builder.append("where n.name=~'.*" + entityOne + ".*' and n.sysuser_id in " + sysIds + " and m.name=~'.*" + entityTwo + ".*' and m.sysuser_id in " + sysIds + " ");
+                builder.append("where n.name=~'.*" + entityOne + ".*' and n.sys_id in " + sysIds + " and m.name=~'.*" + entityTwo + ".*' and m.sys_id in " + sysIds + " ");
                 builder.append("match (f:" + label + ") ");
                 builder.append("match p1=(n)-[r1*1]-(f),p2=(m)-[r2*1]-(f) ");
                 builder.append("return p1,p2 limit 200 union all ");
@@ -111,7 +111,7 @@ public class SearchSentenceProcess {
             String entityOne = askString.substring(0, 2);
             String entityTwo = askString.substring(4, 6);
             builder.append("match (n:人),(m:人) ");
-            builder.append("where n.name=~'.*" + entityOne + ".*' and n.sysuser_id in " + sysIds + " and m.name=~'.*" + entityTwo + ".*' and m.sysuser_id in " + sysIds + " ");
+            builder.append("where n.name=~'.*" + entityOne + ".*' and n.sys_id in " + sysIds + " and m.name=~'.*" + entityTwo + ".*' and m.sys_id in " + sysIds + " ");
             builder.append("match (f:组织) ");
             builder.append("match p1=(n)-[r1]-(f),p2=(m)-[r2]-(f) ");
             builder.append("return p1,p2 limit 200 union all ");
@@ -120,7 +120,7 @@ public class SearchSentenceProcess {
             String entityOne = askString.substring(0, 2);
             String entityTwo = askString.substring(4, 6);
             builder.append("match (n:人),(m:人) ");
-            builder.append("where n.name=~'.*" + entityOne + ".*' and n.sysuser_id in " + sysIds + " and m.name=~'.*" + entityTwo + ".*' and m.sysuser_id in " + sysIds + " ");
+            builder.append("where n.name=~'.*" + entityOne + ".*' and n.sys_id in " + sysIds + " and m.name=~'.*" + entityTwo + ".*' and m.sys_id in " + sysIds + " ");
             builder.append("match (f:事) ");
             builder.append("where f.start_time>='" + startTime + "' and f.start_time<='" + stopTime + "' ");
             builder.append("match p1=(n)-[r1:参与事]-(f),p2=(m)-[r2:参与事]-(f) ");
@@ -128,13 +128,13 @@ public class SearchSentenceProcess {
             cypher = builder.toString().substring(0, builder.length() - 10);
         } else if (askString.indexOf("参与过") != -1 && askString.indexOf("组织") != -1) {
             String entityOne = askString.substring(0, 2);
-            cypher = "match p=(n:人)-[r]-(m:组织) where n.name=~'.*" + entityOne + ".*' and n.sysuser_id in " + sysIds + " return p limit 100";
+            cypher = "match p=(n:人)-[r]-(m:组织) where n.name=~'.*" + entityOne + ".*' and n.sys_id in " + sysIds + " return p limit 100";
         } else if (askString.indexOf("参与过") != -1 && askString.indexOf("事") != -1) {
             String entityOne = askString.substring(0, 2);
-            cypher = "match p=(n:人)-[r:参与事]-(m:事) where n.name=~'.*" + entityOne + ".*' and n.sysuser_id in " + sysIds + " and m.start_time>='" + startTime + "' and m.start_time<='" + stopTime + "' return p limit 100";
+            cypher = "match p=(n:人)-[r:参与事]-(m:事) where n.name=~'.*" + entityOne + ".*' and n.sys_id in " + sysIds + " and m.start_time>='" + startTime + "' and m.start_time<='" + stopTime + "' return p limit 100";
         } else if (askString.indexOf("哪些虚拟账号") != -1) {
             String entityOne = askString.substring(0, 2);
-            cypher = "match p=(n:人)-[r]-(m:物) where n.name=~'.*" + entityOne + ".*' and n.sysuser_id in " + sysIds + " return p limit 100";
+            cypher = "match p=(n:人)-[r]-(m:物) where n.name=~'.*" + entityOne + ".*' and n.sys_id in " + sysIds + " return p limit 100";
         }
         return cypher;
     }
