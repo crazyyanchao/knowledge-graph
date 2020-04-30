@@ -1,5 +1,5 @@
 // 定义画布 （radius是鼠标点击生成圆形分区图的半径）
-var width = 1345, height = 750, color = d3.scale.category20();
+var width = 1920, height = 1080, color = d3.scale.category20();
 var svg = d3.select("body")
     .append("svg")
     .attr("id", "svgGraph")

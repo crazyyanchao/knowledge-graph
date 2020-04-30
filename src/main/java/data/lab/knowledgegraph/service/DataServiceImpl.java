@@ -7,8 +7,13 @@ package data.lab.knowledgegraph.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+import data.lab.knowledgegraph.model.Dbproperties;
+import data.lab.knowledgegraph.properties.Neo4jDataProperties;
 import data.lab.knowledgegraph.register.Neo4jProperties;
 import data.lab.knowledgegraph.repository.CypherNeo4jOperation;
+import data.lab.knowledgegraph.utils.ConnectionManager;
+import data.lab.knowledgegraph.utils.DbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +37,11 @@ public class DataServiceImpl {
 
     private static CypherNeo4jOperation cypherNeo4jOperationV3; // NEO4J
 
+    private static ComboPooledDataSource neo4jPoolSource;    // GRAPH
+
+    @Autowired
+    private Neo4jDataProperties neo4jDataProperties;    // 图数据库连接池
+
     /**
      * @param
      * @return
@@ -43,9 +53,14 @@ public class DataServiceImpl {
                 cypherNeo4jOperationV3 = CypherNeo4jOperation.getInstance(neo4jProperties.getBolt(),
                         neo4jProperties.getUsername(), neo4jProperties.getPassword());
             } else {
-                cypherNeo4jOperationV3 = CypherNeo4jOperation.getInstance("bolt://localhost:7687",
-                        "neo4j", "123456");
+//                cypherNeo4jOperationV3 = CypherNeo4jOperation.getInstance("bolt://localhost:7687",
+//                        "neo4j", "123456");
             }
+        }
+        if (neo4jPoolSource == null) {
+            Dbproperties dbproperties = loadNeo4jProperties();
+            neo4jPoolSource = ConnectionManager.getInstance(dbproperties).getDataPool();
+            DbUtil.setConNeo4jPool(neo4jPoolSource);
         }
     }
 
@@ -142,6 +157,32 @@ public class DataServiceImpl {
         JSONObject object = cypherNeo4jOperationV3.exetueCypherJDBC(cypher);
 
         return object;
+    }
+    /**
+     * @param
+     * @return
+     * @Description: TODO(加载图数据库配置)
+     */
+    public Dbproperties loadNeo4jProperties() {
+        Dbproperties dbproperties = new Dbproperties();
+        if (neo4jProperties != null) {
+            dbproperties.setUrl(neo4jDataProperties.getUrl());
+            dbproperties.setUserName(neo4jDataProperties.getUserName());
+            dbproperties.setPassword(neo4jDataProperties.getPassword());
+            dbproperties.setAcquireRetryAttempts(neo4jDataProperties.getAcquireRetryAttempts());
+            dbproperties.setBreakAfterAcquireFailure(neo4jDataProperties.getBreakAfterAcquireFailure());
+            dbproperties.setTestConnectionOnCheckout(neo4jDataProperties.getTestConnectionOnCheckout());
+            dbproperties.setTestConnectionOnCheckin(neo4jDataProperties.getTestConnectionOnCheckin());
+            dbproperties.setIdleConnectionTestPeriod(neo4jDataProperties.getIdleConnectionTestPeriod());
+            dbproperties.setDriver(neo4jDataProperties.getDriver());
+            dbproperties.setInitialPoolSize(neo4jDataProperties.getInitialPoolSize());
+            dbproperties.setMinPoolSize(neo4jDataProperties.getMinPoolSize());
+            dbproperties.setMaxPoolSize(neo4jDataProperties.getMaxPoolSize());
+            dbproperties.setMaxStatements(neo4jDataProperties.getMaxStatements());
+            dbproperties.setMaxIdleTime(neo4jDataProperties.getMaxIdleTime());
+            dbproperties.setAcquireIncrement(neo4jDataProperties.getAcquireIncrement());
+        }
+        return dbproperties;
     }
 }
 
