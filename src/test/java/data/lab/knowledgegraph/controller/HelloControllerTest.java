@@ -4,28 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import org.junit.Test;
 
-/**
- * 　　　　　　　 ┏┓       ┏┓+ +
- * 　　　　　　　┏┛┻━━━━━━━┛┻┓ + +
- * 　　　　　　　┃　　　　　　 ┃
- * 　　　　　　　┃　　　━　　　┃ ++ + + +
- * 　　　　　　 █████━█████  ┃+
- * 　　　　　　　┃　　　　　　 ┃ +
- * 　　　　　　　┃　　　┻　　　┃
- * 　　　　　　　┃　　　　　　 ┃ + +
- * 　　　　　　　┗━━┓　　　 ┏━┛
- * ┃　　  ┃
- * 　　　　　　　　　┃　　  ┃ + + + +
- * 　　　　　　　　　┃　　　┃　Code is far away from     bug with the animal protecting
- * 　　　　　　　　　┃　　　┃ +
- * 　　　　　　　　　┃　　　┃
- * 　　　　　　　　　┃　　　┃　　+
- * 　　　　　　　　　┃　 　 ┗━━━┓ + +
- * 　　　　　　　　　┃ 　　　　　┣┓
- * 　　　　　　　　　┃ 　　　　　┏┛
- * 　　　　　　　　　┗┓┓┏━━━┳┓┏┛ + + + +
- * 　　　　　　　　　 ┃┫┫　 ┃┫┫
- * 　　　　　　　　　 ┗┻┛　 ┗┻┛+ + + +
+/*
+ *
+ * Data Lab - graph database organization.
+ *
  */
 
 //@RunWith(SpringRunner.class)

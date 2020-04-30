@@ -1,30 +1,11 @@
 package data.lab.knowledgegraph.repository;
+/*
+ *
+ * Data Lab - graph database organization.
+ *
+ */
 
 import org.junit.Test;
-
-/**
- * 　　　　　　　 ┏┓       ┏┓+ +
- * 　　　　　　　┏┛┻━━━━━━━┛┻┓ + +
- * 　　　　　　　┃　　　　　　 ┃
- * 　　　　　　　┃　　　━　　　┃ ++ + + +
- * 　　　　　　 █████━█████  ┃+
- * 　　　　　　　┃　　　　　　 ┃ +
- * 　　　　　　　┃　　　┻　　　┃
- * 　　　　　　　┃　　　　　　 ┃ + +
- * 　　　　　　　┗━━┓　　　 ┏━┛
- * ┃　　  ┃
- * 　　　　　　　　　┃　　  ┃ + + + +
- * 　　　　　　　　　┃　　　┃　Code is far away from     bug with the animal protecting
- * 　　　　　　　　　┃　　　┃ +
- * 　　　　　　　　　┃　　　┃
- * 　　　　　　　　　┃　　　┃　　+
- * 　　　　　　　　　┃　 　 ┗━━━┓ + +
- * 　　　　　　　　　┃ 　　　　　┣┓
- * 　　　　　　　　　┃ 　　　　　┏┛
- * 　　　　　　　　　┗┓┓┏━━━┳┓┏┛ + + + +
- * 　　　　　　　　　 ┃┫┫　 ┃┫┫
- * 　　　　　　　　　 ┗┻┛　 ┗┻┛+ + + +
- */
 
 public class CypherNeo4jOperationV3Test {
 
