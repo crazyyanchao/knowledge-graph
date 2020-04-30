@@ -136,7 +136,7 @@ public class DataServiceImpl {
         initLoad();
         StringBuilder builder = new StringBuilder();
 
-        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' return p limit 50 union all ");
+        builder.append("match p=(n)-[]-(m) where n.name CONTAINS '" + name + "' return p limit 50 union all ");
 
 //
 //        builder.append("match p=(n)-[]-(m) where n.name=~'.*" + name + ".*' and n.sysuser_id in " + sysIds.toString() + " and m.user_id in " + sysIds.toString() + " return p limit 50 union all ");
@@ -155,6 +155,9 @@ public class DataServiceImpl {
 
         String cypher = builder.toString().substring(0, builder.length() - 10);
         JSONObject object = cypherNeo4jOperationV3.exetueCypherJDBC(cypher);
+
+
+
 
         return object;
     }

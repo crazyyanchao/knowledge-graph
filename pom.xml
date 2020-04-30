@@ -86,7 +86,12 @@
         <dependency>
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j-jdbc-driver</artifactId>
-            <version>4.0.0</version>
+            <version>3.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>casia.isi</groupId>
+            <artifactId>neo4j-engine-inter</artifactId>
+            <version>1.1.0</version>
         </dependency>
     </dependencies>
     <!--MAVEN构建-->
