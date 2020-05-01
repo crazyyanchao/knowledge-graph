@@ -11,24 +11,6 @@ spring:
     static-locations: classpath:/static/
 
 neo4j:
-  bolt: bolt://localhost:7687
+  bolt: localhost:7687
   username: neo4j
   password: 123456
-
-neo4jdata:
-  url: jdbc:neo4j:bolt://localhost:7687
-  userName: neo4j
-  password: 123456
-  driver: org.neo4j.jdbc.Driver
-  initialPoolSize: 10
-  minPoolSize: 1
-  maxPoolSize: 500
-  maxStatements: 0
-  maxIdleTime: 200
-  acquireIncrement: 10
-  acquireRetryAttempts: 30
-  breakAfterAcquireFailure: false
-  testConnectionOnCheckout: false
-  testConnectionOnCheckin: true
-  idleConnectionTestPeriod: 60
-  checkoutTimeout: 3000

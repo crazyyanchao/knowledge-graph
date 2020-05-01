@@ -90,8 +90,7 @@ public class HelloController {
     @ResponseBody
     public String getGraphEntityInfoZdrSearch(@RequestBody UserJson userJson) {
         String name = userJson.getName();
-        JSONArray sysIds = userJson.getSysTemUserId();
-        JSONObject graphData = dataService.searchZdrInfo(name, sysIds);
+        JSONObject graphData = dataService.searchZdrInfo(name);
         return graphData.toJSONString();
     }
     /**

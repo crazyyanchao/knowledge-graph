@@ -47,7 +47,7 @@
 <body>
 <div id="box" style="position:  relative;">
     <h4 style="color: #c0c0c09c;display:  inline-block;position:  absolute;width:  452px;right: 401px;top: -30px;height: auto;">
-        问答举例：小明住哪里？小明家在哪里？小明最近qq上线是什么时候？小李的微信是什么？小李从哪儿毕业的？小李最近有啥异常行为吗？小李和小明是什么关系？小明去过南湖路20号吗？小李和小明有一起去过的地方吗？人民的名义人物关系网有吗？...
+        问答举例：小明住哪里？小明家在哪里？小明最近qq上线是什么时候？小李的微信是什么？小李从哪儿毕业的？小李最近有啥异常行为吗？小李和小明是什么关系？小明去过南湖路吗？小李和小明有一起去过的地方吗？人民的名义人物关系网有吗？...
     </h4>
 
     <div style="float: left;">
@@ -82,7 +82,6 @@
             // $("#graphId").html("");
             var entityCutName = $("#A").val();
 
-
             if (entityCutName != null && entityCutName != "" && entityCutName != undefined) {
 
                 if (entityCutName.indexOf(" ") == -1) { // 没有空格
@@ -90,7 +89,6 @@
                     if (entityCutName.indexOf("？") == -1 && entityCutName.indexOf("?") == -1) {
                         var obj = new Object();
                         obj.name = entityCutName;
-                        obj.sysTemUserId = ["234", "1", "316", "313", "322", "2", "287", "1", "13", "46", "277", "309", "4", "310", "379", "12", "2", "3", "8", "11", "4", "44", "1", "116", "22", "25", "287", "13", "34", "10", "93", "37", "111", "98", "285", "24", "17", "280", "321", "28"];
                         var json = JSON.stringify(obj);
 
                         alert("search for " + entityCutName + "?");
@@ -109,7 +107,6 @@
                         if (entityCutName.indexOf("人民的名义") == -1) {
                             var obj = new Object();
                             obj.askString = entityCutName;
-                            obj.sysTemUserId = ["234", "1", "316", "313", "322", "2", "287", "1", "13", "46", "277", "309", "4", "310", "379", "12", "2", "3", "8", "11", "4", "44", "1", "116", "22", "25", "287", "13", "34", "10", "93", "37", "111", "98", "285", "24", "17", "280", "321", "28"];
                             var json = JSON.stringify(obj);
 
                             alert("search for " + entityCutName + "?");
@@ -143,7 +140,6 @@
 
                     var obj = {};
                     obj.nameArray = arr;
-                    obj.sysTemUserId = ["234", "1", "316", "313", "322", "2", "287", "1", "13", "46", "277", "309", "4", "310", "379", "12", "2", "3", "8", "11", "4", "44", "1", "116", "22", "25", "287", "13", "34", "10", "93", "37", "111", "98", "285", "24", "17", "280", "321", "28"];
                     var json = JSON.stringify(obj);
 
                     alert("search for " + entityCutName + "?");
@@ -167,7 +163,7 @@
 
     function output(data) {
         console.log(data);
-        loadZdrSearchGraph(data);
+        loadSearchGraph(data);
     }
 
 </script>

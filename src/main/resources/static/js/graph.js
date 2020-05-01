@@ -1,5 +1,7 @@
 // 定义画布 （radius是鼠标点击生成圆形分区图的半径）
-var width = 1920, height = 1080, color = d3.scale.category20();
+// var width = 1345, height = 750, color = d3.scale.category20();
+var width = 1920, height = 800, color = d3.scale.category20();
+
 var svg = d3.select("body")
     .append("svg")
     .attr("id", "svgGraph")
@@ -681,5 +683,17 @@ function load() {
 // 初始化图数据库配置信息
 // startNeo4j();
 
+function loadSearchGraph(json) {
+    d3.json("http://localhost:7476/knowledge-graph/hello/dataSource/type/1", function (error, root) { // 服务器加载节点圆形分区数据
+        if (error) {
+            return console.warn(error);
+        }
+        dataCirclePartition = root;
+    });
+
+    graph(json);
+
+}
+
 // 执行知识图谱数据可视化
-load();
+// load();
