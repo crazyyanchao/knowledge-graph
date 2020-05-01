@@ -25,13 +25,17 @@
 - ./knowledge-graph-web
 
 ## CSV文件导入接口
-data.lab.knowledgegraph.service.DataServiceImplTest
-默认标签‘Person’，可自定义
-```json
+- http://localhost:7476/knowledge-graph/hello/dataSource/loadCsv
+- data.lab.knowledgegraph.service.DataServiceImplTest
+```
+//默认标签‘Person’，可自定义
 {
     "label": "Person"
 }
 ```
+- CSV文件分为节点和关系分别存放在不同文件，文件位置：knowledge-graph\neo-import-csv
+- 修改文件内容之后直接调用接口即可
+
 ## 清除图库数据
 ```
 MATCH (n) 
