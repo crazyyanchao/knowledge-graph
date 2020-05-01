@@ -44,6 +44,7 @@
 <body>
 
 <a href="http://localhost:7476/knowledge-graph/hello/index">人物知识图谱</a>
+<a href="http://localhost:7476/knowledge-graph/hello/search">图谱初始化</a>
 
 <body>
 <div id="box" style="position:  relative;">
@@ -73,6 +74,14 @@
 <script type='text/javascript' src='http://localhost:7476/knowledge-graph/path/js/update.js'></script>
 <script type='text/javascript' src='http://localhost:7476/knowledge-graph/path/js/graph.js'></script>
 <script>
+    $(function(){
+        $("#A").bind('input porpertychange',function(){
+            var inputValue=$("#A").val();
+            console.log(inputValue);
+            sessionStorage.clear();
+            sessionStorage.setItem("itemData",inputValue);
+        });
+    });
     // GET RAM VALUE
     getItemData();
 
