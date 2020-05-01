@@ -40,7 +40,8 @@
 
     </style>
 </head>
-<body style="background: url(http://localhost:7476/knowledge-graph/path/images/bg.jpg);">
+<!--<body style="background: url(http://localhost:7476/knowledge-graph/path/images/bg.jpg);">-->
+<body>
 
 <a href="http://localhost:7476/knowledge-graph/hello/index">人物知识图谱</a>
 
@@ -63,9 +64,8 @@
         功能备注：1.实体关联信息搜索与推荐使用模糊关键词
         2.实体关系发现使用多实体对
         3.问答式搜索使用问号结尾
+        4.load-all加载全部图谱
     </h4>
-
-
 </div>
 <script type='text/javascript' src='http://localhost:7476/knowledge-graph/path/js/jquery-2.2.4.min.js'></script>
 <script type='text/javascript' src="http://localhost:7476/knowledge-graph/path/js/d3.js" charset="utf-8"></script>
@@ -163,8 +163,13 @@
 
     function output(data) {
         console.log(data);
+        update();
         loadSearchGraph(data);
     }
+
+    // function refresh() {
+    //     window.location.reload();
+    // }
 
 </script>
 </body>

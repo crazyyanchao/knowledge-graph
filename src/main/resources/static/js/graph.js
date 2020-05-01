@@ -690,9 +690,7 @@ function loadSearchGraph(json) {
         }
         dataCirclePartition = root;
     });
-
     graph(json);
-
 }
 
 // 执行知识图谱数据可视化

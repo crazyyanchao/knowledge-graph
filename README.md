@@ -35,3 +35,5 @@ JS以及其它HTML等源码
 ------------------------
 ./knowledge-graph-web
 
+![图](images/graph-1.png)
+![图](images/graph-2.png)

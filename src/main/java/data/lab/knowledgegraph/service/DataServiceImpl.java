@@ -120,6 +120,8 @@ public class DataServiceImpl {
         builder.append("match p=(n)-[]-(m) where n.name CONTAINS '" + name + "' return p limit 50 union all ");
         String cypher = builder.toString().substring(0, builder.length() - 10);
 
+        if ("load-all".equals(name)) cypher = "MATCH p=()-[]->() RETURN p LIMIT 3000";
+
         JSONObject result = neoSearcher.execute(cypher, CRUD.RETRIEVE);
         return JSONTool.transferToOtherD3(result);
     }

@@ -2,8 +2,10 @@
 // serverD:客户端请求的节点数据
 // serverE:客户端请求的关系数据
 function update(serverD, serverE) {
-    // 先清空布局中的图形元素
-    d3.select("#svgGraph").select("#svgOne").selectAll("*").remove();
-    // nodes,edges
+    // // 先清空布局中的图形元素
+    // d3.select("#svgGraph").select("#svgOne").selectAll("*").remove();
+    // // nodes,edges
 
 }
+
+
