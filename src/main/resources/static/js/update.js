@@ -11,6 +11,21 @@ function update() {
     // d3.select("#svgGraph").remove(); // 删除整个SVG
     // d3.select("#svgGraph").select("#svgOne").selectAll("*").remove(); // 清空SVG中的内容
     // d3.select("#svgGraph").select("#svgOne").reset();
-    // d3.rebind();
 
+    d3.selectAll('#svgOne').remove(); //删除整个SVG
+    d3.selectAll('#svgOne').selectAll('*').remove(); //清空SVG中的内容
 }
+
+function getItemData() {
+    // 获取缓存ITEM
+    var data = sessionStorage.getItem("itemData");
+    if (data == null || data == "") {
+        $("#A").val("load-all");
+    } else {
+        $("#A").val(data);
+    }
+
+    // 默认执行一次search
+    // $('#search').click();
+}
+

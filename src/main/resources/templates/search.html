@@ -52,7 +52,7 @@
     </h4>
 
     <div style="float: left;">
-        <input type="text" name="search" id="A" placeholder="请输入关键字">
+        <input type="text" name="search-name" id="A" placeholder="请输入关键字">
         <div id="search">图搜</div>
     </div>
     <h4 style="color: #c0c0c09c;display:  inline-block;position:  absolute;width:  477px;right: -507px;top: -30px;height: auto;">
@@ -73,6 +73,9 @@
 <script type='text/javascript' src='http://localhost:7476/knowledge-graph/path/js/update.js'></script>
 <script type='text/javascript' src='http://localhost:7476/knowledge-graph/path/js/graph.js'></script>
 <script>
+    // GET RAM VALUE
+    getItemData();
+
     $(function () {
         input();
     });
@@ -98,7 +101,7 @@
                             data: json,
                             contentType: "application/json",
                             success: function (data) {
-                                output(data);
+                                output(data,entityCutName);
                             },
                             dataType: 'json'
                         });
@@ -133,7 +136,6 @@
                         }
                     }
 
-
                 } else {    // 有空格   覃永 吴良
                     debugger
                     var arr = entityCutName.split(" ");
@@ -161,11 +163,23 @@
 
     }
 
-    function output(data) {
+    function output(data,entityCutName) {
         console.log(data);
-        // update();
+
+        // SAVE VALUE TO RAM
+        sessionStorage.clear();
+        sessionStorage.setItem("itemData",entityCutName);
+
+        // RELOAD
+        // window.location.href = "/knowledge-graph/hello/search";
+
         loadSearchGraph(data);
     }
+
+    // function output(data) {
+    //     console.log(data);
+    //     loadSearchGraph(data);
+    // }
 
     // function refresh() {
     //     window.location.reload();
