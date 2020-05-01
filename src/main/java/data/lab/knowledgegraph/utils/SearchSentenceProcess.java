@@ -8,10 +8,10 @@ package data.lab.knowledgegraph.utils;
 import com.alibaba.fastjson.JSONArray;
 
 /**
- * @author YanchaoMa yanchaoma@foxmail.com
- * @PACKAGE_NAME: casia.isiteam.knowledgegraph.utils
- * @Description: TODO(Search sentence process)
- * @date 2018/5/26 9:27
+ * @author Yc-Ma
+ * @PACKAGE_NAME: data.lab.knowledgegraph.utils.SearchSentenceProcess
+ * @Description: TODO
+ * @date 2020/5/1 19:06
  */
 public class SearchSentenceProcess {
 
