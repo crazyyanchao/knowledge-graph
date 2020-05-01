@@ -18,8 +18,8 @@
 ## index.html
 - 知识图谱可视化入口文件
 
-## 可视化数据接口
-- 访问地址：http://localhost:7476/knowledge-graph/hello/search
+## 访问地址
+- http://localhost:7476/knowledge-graph/hello/search
 
 ## 启动部署文件
 - ./knowledge-graph-web
@@ -37,7 +37,15 @@ data.lab.knowledgegraph.service.DataServiceImplTest
 MATCH (n) 
 OPTIONAL MATCH (n)-[r]->() DELETE n,r
 ```
+
+## NEO4J启动脚本
+- start.bat
+```
+bin\neo4j.bat console
+```
+
 ![图](images/graph-1.png)
 ![图](images/graph-2.png)
 ![图](images/import-csv.png)
 ![图](images/monitor-input.png)
+
