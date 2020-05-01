@@ -31,8 +31,6 @@ import java.io.InputStream;
 @CrossOrigin(origins = "*", maxAge = 3600) // 为了支持跨源请求添加注解
 public class HelloController {
 
-    private final static Logger logger = LoggerFactory.getLogger(HelloController.class);
-
     @Autowired
     private DataServiceImpl dataService;
 
@@ -93,6 +91,7 @@ public class HelloController {
         JSONObject graphData = dataService.searchZdrInfo(name);
         return graphData.toJSONString();
     }
+
     /**
      * @param
      * @return
@@ -115,6 +114,7 @@ public class HelloController {
 
         return graphData.toJSONString();
     }
+
     /**
      * @param
      * @return
@@ -128,6 +128,7 @@ public class HelloController {
         JSONObject graphData = dataService.searchInfo(name, sysIds);
         return graphData.toJSONString();
     }
+
     /**
      * @param
      * @return
@@ -140,6 +141,20 @@ public class HelloController {
         JSONArray sysIds = userJson.getSysTemUserId();
         JSONObject graphData = dataService.searchZdrRelaInfo(nameArray, sysIds);
         return graphData.toJSONString();
+    }
+
+    /**
+     * @param
+     * @return http://localhost:7476/knowledge-graph/hello/dataSource/loadCsv
+     * @Description: TODO(CSV文件导入接口)
+     */
+    @RequestMapping(value = "/dataSource/loadCsv", method = RequestMethod.POST)
+    @ResponseBody
+    public String loadCsv(@RequestBody UserJson userJson) {
+        String label = userJson.getLabel();
+        if (label == null || "".equals(label)) label = "Person";
+        dataService.loadCsv(label);
+        return "OK";
     }
 }
 

@@ -683,6 +683,14 @@ function load() {
 // 初始化图数据库配置信息
 // startNeo4j();
 
+function initGraph() {
+    // var that=this;
+    nodes.splice(0,nodes.length);//清空数组
+    console.log(nodes); // 输出 []，空数组，即被清空了
+    edges.splice(0,edges.length);//清空数组
+    console.log(edges); // 输出 []，空数组，即被清空了
+}
+
 function loadSearchGraph(json) {
     d3.json("http://localhost:7476/knowledge-graph/hello/dataSource/type/1", function (error, root) { // 服务器加载节点圆形分区数据
         if (error) {
@@ -690,6 +698,7 @@ function loadSearchGraph(json) {
         }
         dataCirclePartition = root;
     });
+    initGraph();
     graph(json);
 }
 

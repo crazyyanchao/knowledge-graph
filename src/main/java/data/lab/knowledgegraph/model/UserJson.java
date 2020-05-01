@@ -57,6 +57,7 @@ public class UserJson {
 
     private String startTime;
     private String stopTime;
+    private String label;
 
     private JSONArray labelsArray;
 
@@ -224,6 +225,15 @@ public class UserJson {
     public String getLabels() {
 
         return labels;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+
+        return label;
     }
 
     public JSONObject getKeyValue() {

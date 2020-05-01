@@ -6,6 +6,10 @@ package data.lab.knowledgegraph.service;
  */
 
 import casia.isi.neo4j.common.CRUD;
+import casia.isi.neo4j.common.Field;
+import casia.isi.neo4j.compose.NeoComposer;
+import casia.isi.neo4j.model.Label;
+import casia.isi.neo4j.model.RelationshipType;
 import casia.isi.neo4j.search.NeoSearcher;
 import casia.isi.neo4j.util.JSONTool;
 import com.alibaba.fastjson.JSONArray;
@@ -33,6 +37,7 @@ public class DataServiceImpl {
     private Neo4jProperties neo4jProperties;
 
     private NeoSearcher neoSearcher;
+    private NeoComposer neoComposer;
 
     /**
      * @param
@@ -43,6 +48,7 @@ public class DataServiceImpl {
         if (neoSearcher == null)
             logger.info("SERVER:" + neo4jProperties.getBolt() + " USER:" + neo4jProperties.getUsername() + " PWD:" + neo4jProperties.getPassword());
         neoSearcher = new NeoSearcher(neo4jProperties.getBolt(), neo4jProperties.getUsername(), neo4jProperties.getPassword());
+        neoComposer = new NeoComposer(neo4jProperties.getBolt(), neo4jProperties.getUsername(), neo4jProperties.getPassword());
     }
 
     /**
@@ -124,6 +130,34 @@ public class DataServiceImpl {
 
         JSONObject result = neoSearcher.execute(cypher, CRUD.RETRIEVE);
         return JSONTool.transferToOtherD3(result);
+    }
+
+    public void loadCsv(String label) {
+        initLoad();
+
+        String nodesCsvName = "node-test.csv";
+        String relationsCsvName = "relation-test.csv";
+
+        // =======================================================生成NODE=======================================================
+
+
+        /**
+         * @param csvName:CSV文件名（数据写入CSV的顺序需要和方法传入参数顺序保持一致）String _uniqueField, String... _key
+         * @param label:节点标签
+         * @param _uniqueField:合并的唯一字段
+         * @param _key:MERGE的属性字段
+         * @return
+         * @Description: TODO(导入节点CSV)
+         */
+        System.out.println(neoComposer.executeImportCsv(1000, nodesCsvName, Label.label(label), Field.UNIQUEUUID.getSymbolValue(),
+                Field.ENTITYNAME.getSymbolValue(), "comment", "count"));
+
+        // 所有节点设置name属性
+        neoComposer.execute("MATCH (n) SET n.name=n._entity_name", CRUD.UPDATE);
+
+        // =======================================================生成关系=======================================================
+        System.out.println(neoComposer.executeImportCsv(1000, relationsCsvName, RelationshipType.withName("好友"), Label.label("Person"),
+                Label.label("Person"), Field.UNIQUEUUID.getSymbolValue(), Field.UNIQUEUUID.getSymbolValue(), "current_time", "comment"));
     }
 }
 
