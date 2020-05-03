@@ -150,11 +150,26 @@ public class HelloController {
     @ResponseBody
     public String loadCsv(@RequestBody UserJson userJson) {
         String label = userJson.getLabel();
+        String relType = userJson.getRelationship();
+        // 默认的节点标签和关系类型
         if (label == null || "".equals(label)) label = "Person";
         dataService.loadCsv(label);
         return "OK";
     }
+
+    /**
+     * @param
+     * @return http://localhost:7476/knowledge-graph/hello/dataSource/loadGraphByCypher
+     * @Description: TODO(CSV文件导入接口)
+     */
+    @RequestMapping(value = "/dataSource/loadGraphByCypher", method = RequestMethod.GET)
+    @ResponseBody
+    public String loadGraphByCypher() {
+        dataService.loadGraphByCypher();
+        return "OK";
+    }
 }
+
 
 
 

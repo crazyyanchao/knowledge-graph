@@ -11,6 +11,7 @@ import casia.isi.neo4j.compose.NeoComposer;
 import casia.isi.neo4j.model.Label;
 import casia.isi.neo4j.model.RelationshipType;
 import casia.isi.neo4j.search.NeoSearcher;
+import casia.isi.neo4j.util.FileUtil;
 import casia.isi.neo4j.util.JSONTool;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -20,6 +21,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -159,5 +162,56 @@ public class DataServiceImpl {
         System.out.println(neoComposer.executeImportCsv(1000, relationsCsvName, RelationshipType.withName("好友"), Label.label("Person"),
                 Label.label("Person"), Field.UNIQUEUUID.getSymbolValue(), Field.UNIQUEUUID.getSymbolValue(), "current_time", "comment"));
     }
+
+    public void loadGraphByCypher() {
+        initLoad();
+        // LOAD CSV
+        try {
+            mergeNodes();
+            mergeRelationship();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void mergeRelationship() throws IOException {
+        List<String> relList = relList = FileUtil.readFileByLine("neo-import-csv\\relation-user-defined.csv");
+
+        // 创建关系
+        for (String line : relList) {
+           if (line!=null && !"".equals(line)){
+               try {
+                   String[] array = line.trim().split(",");
+                   String startId = array[0];
+                   String endId = array[1];
+                   String rel = array[2];
+                   String cypher="MATCH (n),(m) WHERE n.id='"+startId+"' AND m.id='"+endId+"' MERGE p=(n)-[:"+rel+"]->(m);";
+                   System.out.println(neoComposer.execute(cypher, CRUD.MERGE)+" CYPHER:"+cypher);
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
+           }
+        }
+    }
+
+    private void mergeNodes() throws IOException {
+        List<String> nodeList = FileUtil.readFileByLine("neo-import-csv\\node-user-defined.csv");
+        // 创建节点
+        for (String line : nodeList) {
+            if (line!=null && !"".equals(line)){
+                try {
+                    String[] array = line.trim().split(",");
+                    String id = array[0];
+                    String name = array[1];
+                    String label = array[2];
+                    String cypher="MERGE (n:"+label+" {id:'"+id+"'}) SET n.name='"+name+"';";
+                    System.out.println(neoComposer.execute(cypher, CRUD.MERGE)+" CYPHER:"+cypher);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
 

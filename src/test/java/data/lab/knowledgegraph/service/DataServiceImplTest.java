@@ -5,11 +5,14 @@ import casia.isi.neo4j.common.Field;
 import casia.isi.neo4j.compose.NeoComposer;
 import casia.isi.neo4j.model.Label;
 import casia.isi.neo4j.model.RelationshipType;
+import casia.isi.neo4j.util.FileUtil;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 /*
  *
@@ -105,6 +108,14 @@ public class DataServiceImplTest {
          */
         System.out.println(composer.executeImportCsv(1000, relationsCsvName, RelationshipType.withName("好友"), Label.label("Person"),
                 Label.label("Person"), Field.UNIQUEUUID.getSymbolValue(), Field.UNIQUEUUID.getSymbolValue(), "current_time", "comment"));
+    }
+
+    @Test
+    public void test01() throws IOException {
+        List<String> list = FileUtil.readFileByLine("neo-import-csv\\node-user-defined.csv");
+        for (String line : list) {
+            System.out.println(line);
+        }
     }
 }
 
