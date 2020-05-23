@@ -11,6 +11,6 @@ spring:
     static-locations: classpath:/static/
 
 neo4j:
-  bolt: localhost:7687
+  bolt: 60.205.188.102:33029
   username: neo4j
-  password: 123456
+  password: 123123

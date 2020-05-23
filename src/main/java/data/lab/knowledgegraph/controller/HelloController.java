@@ -152,7 +152,9 @@ public class HelloController {
         String label = userJson.getLabel();
         String relType = userJson.getRelationship();
         // 默认的节点标签和关系类型
-        if (label == null || "".equals(label)) label = "Person";
+        if (label == null || "".equals(label)) {
+            label = "Person";
+        }
         dataService.loadCsv(label);
         return "OK";
     }

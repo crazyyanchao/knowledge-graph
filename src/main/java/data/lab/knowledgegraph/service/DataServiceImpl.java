@@ -7,23 +7,32 @@ package data.lab.knowledgegraph.service;
 
 import casia.isi.neo4j.common.CRUD;
 import casia.isi.neo4j.common.Field;
+import casia.isi.neo4j.common.NeoAccessor;
 import casia.isi.neo4j.compose.NeoComposer;
 import casia.isi.neo4j.model.Label;
 import casia.isi.neo4j.model.RelationshipType;
 import casia.isi.neo4j.search.NeoSearcher;
 import casia.isi.neo4j.util.FileUtil;
 import casia.isi.neo4j.util.JSONTool;
+import casia.isiteam.zdr.wltea.analyzer.cfg.Configuration;
+import casia.isiteam.zdr.wltea.analyzer.core.IKSegmenter;
+import casia.isiteam.zdr.wltea.analyzer.core.Lexeme;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import data.lab.knowledgegraph.register.Neo4jProperties;
+import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
  * @author Yc-Ma
@@ -48,8 +57,9 @@ public class DataServiceImpl {
      * @Description: TODO(初始化)
      */
     public void initLoad() {
-        if (neoSearcher == null)
+        if (neoSearcher == null) {
             logger.info("SERVER:" + neo4jProperties.getBolt() + " USER:" + neo4jProperties.getUsername() + " PWD:" + neo4jProperties.getPassword());
+        }
         neoSearcher = new NeoSearcher(neo4jProperties.getBolt(), neo4jProperties.getUsername(), neo4jProperties.getPassword());
         neoComposer = new NeoComposer(neo4jProperties.getBolt(), neo4jProperties.getUsername(), neo4jProperties.getPassword());
     }
@@ -129,10 +139,48 @@ public class DataServiceImpl {
         builder.append("match p=(n)-[]-(m) where n.name CONTAINS '" + name + "' return p limit 50 union all ");
         String cypher = builder.toString().substring(0, builder.length() - 10);
 
-        if ("load-all".equals(name)) cypher = "MATCH p=()-[]->() RETURN p LIMIT 3000";
+        if ("load-all".equals(name)) {
+            cypher = "MATCH p=()-[]->() RETURN p LIMIT 3000";
+        }
+        if (name != null && !"".equals(name) && name.contains("=QA")) {
+            cypher = qaCypher(name.replace("=QA", ""));
+        }
 
         JSONObject result = neoSearcher.execute(cypher, CRUD.RETRIEVE);
         return JSONTool.transferToOtherD3(result);
+    }
+
+    private String qaCypher(String name) {
+        List<String> words = ikAnalyzer(name);
+        StringBuilder builder = new StringBuilder();
+        for (String wordF : words) {
+            for (String wordT : words) {
+                builder.append("match p=(n)-[]-(m) where n.name CONTAINS '")
+                        .append(wordF)
+                        .append("' AND n.name CONTAINS '")
+                        .append(wordT)
+                        .append("'  return p limit 50 union all ");
+            }
+        }
+        return builder.substring(0, builder.length() - 11);
+    }
+
+    private List<String> ikAnalyzer(String text) {
+        PropertyConfigurator.configureAndWatch("dic" + File.separator + "log4j.properties");
+        Configuration cfg = new Configuration(true);
+
+        StringReader input = new StringReader(text.trim());
+        IKSegmenter ikSegmenter = new IKSegmenter(input, cfg);
+
+        List<String> results = new ArrayList<>();
+        try {
+            for (Lexeme lexeme = ikSegmenter.next(); lexeme != null; lexeme = ikSegmenter.next()) {
+                results.add(lexeme.getLexemeText());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return results;
     }
 
     public void loadCsv(String label) {
@@ -179,18 +227,18 @@ public class DataServiceImpl {
 
         // 创建关系
         for (String line : relList) {
-           if (line!=null && !"".equals(line)){
-               try {
-                   String[] array = line.trim().split(",");
-                   String startId = array[0];
-                   String endId = array[1];
-                   String rel = array[2];
-                   String cypher="MATCH (n),(m) WHERE n.id='"+startId+"' AND m.id='"+endId+"' MERGE p=(n)-[:"+rel+"]->(m);";
-                   System.out.println(neoComposer.execute(cypher, CRUD.MERGE)+" CYPHER:"+cypher);
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
-           }
+            if (line != null && !"".equals(line)) {
+                try {
+                    String[] array = line.trim().split(",");
+                    String startId = array[0];
+                    String endId = array[1];
+                    String rel = array[2];
+                    String cypher = "MATCH (n),(m) WHERE n.id='" + startId + "' AND m.id='" + endId + "' MERGE p=(n)-[:" + rel + "]->(m);";
+                    System.out.println(neoComposer.execute(cypher, CRUD.MERGE) + " CYPHER:" + cypher);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -198,14 +246,14 @@ public class DataServiceImpl {
         List<String> nodeList = FileUtil.readFileByLine("neo-import-csv\\node-user-defined.csv");
         // 创建节点
         for (String line : nodeList) {
-            if (line!=null && !"".equals(line)){
+            if (line != null && !"".equals(line)) {
                 try {
                     String[] array = line.trim().split(",");
                     String id = array[0];
                     String name = array[1];
                     String label = array[2];
-                    String cypher="MERGE (n:"+label+" {id:'"+id+"'}) SET n.name='"+name+"';";
-                    System.out.println(neoComposer.execute(cypher, CRUD.MERGE)+" CYPHER:"+cypher);
+                    String cypher = "MERGE (n:" + label + " {id:'" + id + "'}) SET n.name='" + name + "';";
+                    System.out.println(neoComposer.execute(cypher, CRUD.MERGE) + " CYPHER:" + cypher);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

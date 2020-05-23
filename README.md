@@ -39,6 +39,12 @@
 - http://localhost:7476/knowledge-graph/hello/dataSource/loadGraphByCypher
 - 在*-user-defined.csv文件定义好数据之后，直接在浏览器调用上述GET接口导入即可
 
+## 切换到QA模式
+- 检索字符串以‘=QA’结尾，例如：傻宝旗舰店售卖温控器吗=QA
+>优化QA查询效果可在‘dic\dic-cfg\user-dic\user_defined.dic’目录添加自定义词
+- 未添加自定义词：[傻, 宝, 旗舰店, 售卖, 温控器, 吗]
+- 添加之后：[傻宝旗舰店, 售卖, 温控器, 吗]
+
 ## 清除图库数据
 ```
 MATCH (n) 
