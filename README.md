@@ -40,6 +40,7 @@
 - 在*-user-defined.csv文件定义好数据之后，直接在浏览器调用上述GET接口导入即可
 
 ## 切换到QA模式
+>基于图谱的问答模式
 ### 1、QA检索
 - 检索字符串以‘=QA’结尾，例如：傻宝旗舰店售卖温控器吗=QA
 >优化QA查询效果可在‘dic\dic-cfg\user-dic\user_defined.dic’目录添加自定义词
